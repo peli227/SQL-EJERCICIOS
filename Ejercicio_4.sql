@@ -1,3 +1,4 @@
+-- Mostrar los empleados cuyo total de ventas (en dinero) es mayor al promedio de ventas de todos los empleados.
 SELECT E.EmployeeID,
 		E.LastName,
        SUM(OD.Quantity * P.Price) as total_vendido
