@@ -1,3 +1,4 @@
+-- Mostrar los productos cuyo precio es mayor al promedio de su categoría
 Select P.ProductName,
 		P.CategoryID,
 		P.Price
