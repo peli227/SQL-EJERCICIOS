@@ -1,3 +1,4 @@
+-- Mostrar los clientes que han realizado pedidos en más de 2 años diferentes.
 Select t.CustomerID,
 		t.CustomerName,
 		COUNT(distinct año) AS Año_diferente
