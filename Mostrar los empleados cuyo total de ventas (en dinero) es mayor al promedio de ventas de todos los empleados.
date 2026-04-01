@@ -1,0 +1,20 @@
+SELECT E.EmployeeID,
+		E.LastName,
+       SUM(OD.Quantity * P.Price) as total_vendido
+From northwind.Employees E 
+JOIN northwind.Orders O ON E.EmployeeID = O.EmployeeID
+JOIN northwind.OrderDetails OD ON O.OrderID = OD.OrderID
+JOIN Northwind.Products P ON OD.ProductID = P.ProductID
+Group by E.EmployeeID, E.LastName
+HAVING SUM(OD.Quantity * P.Price) > (
+		SELECT AVG(total_empleado)
+    FROM (
+        SELECT O2.EmployeeID,
+               SUM(OD2.Quantity * P2.Price) AS total_empleado
+        FROM northwind.Orders O2
+        JOIN northwind.OrderDetails OD2 ON O2.OrderID = OD2.OrderID
+        JOIN northwind.Products P2 ON OD2.ProductID = P2.ProductID
+        GROUP BY O2.EmployeeID
+    ) t
+)
+ORDER BY SUM(OD.Quantity * P.Price) DESC
